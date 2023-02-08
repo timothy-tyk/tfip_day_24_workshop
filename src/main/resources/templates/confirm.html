@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kwik-e-mart</title>
+  </head>
+  <body>
+    <h1>Order Confirmation</h1>
+    <h1>Recipient</h1>
+    <div data-th-object="${user}">
+      <div><span data-th-text="${user.customerName}"></span></div>
+      <div><span data-th-text="${user.shipAddress}"></span></div>
+      <div><span data-th-text="${user.notes}"></span></div>
+    </div>
+    <hr />
+    <h2>Items</h2>
+    <table border="black 1px">
+      <tr>
+        <td>
+          <span>Product</span>
+        </td>
+        <td>
+          <span>Price</span>
+        </td>
+        <td>
+          <span>Discount</span>
+        </td>
+        <td>
+          <span>Quantity</span>
+        </td>
+      </tr>
+
+      <tr data-th-each="orderDetail: ${orderDetails}">
+        <td>
+          <span data-th-text="${orderDetail.product}"></span>
+        </td>
+        <td>
+          <span data-th-text="${orderDetail.unitPrice}"></span>
+        </td>
+        <td>
+          <span data-th-text="${orderDetail.discount}"></span>
+        </td>
+        <td>
+          <span data-th-text="${orderDetail.quantity}"></span>
+        </td>
+      </tr>
+      <tr></tr>
+    </table>
+  </body>
+</html>

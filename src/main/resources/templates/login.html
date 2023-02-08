@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kwik-e-mart</title>
+  </head>
+  <body>
+    <h1>Kwik-Login</h1>
+    <form method="post" data-th-action="@{/login}" data-th-object="${order}">
+      <div>
+        <span>Name: <input type="text" data-th-field="*{customerName}"></input></span>
+      </div>
+      <div>
+        <span>Address: <input type="text" data-th-field="*{shipAddress}"></input></span>
+      </div>
+      <div>
+        <span>Notes: <input type="text" data-th-field="*{notes}"></input></span>
+      </div>
+      <div>
+        <span>Tax: <input type="text" data-th-field="*{tax}"></input></span>
+      </div>
+      <div>
+        <input type="submit" value="login"></input>
+      </div>
+    </form>
+  </body>
+</html>

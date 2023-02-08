@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order</title>
+  </head>
+  <body>
+    <div>
+      <h1>Kwik-e-mart</h1>
+      <div data-th-object="${user}">
+        <div>Welcome, <span data-th-text="${user.customerName}"></span></div>
+        <div><span data-th-text="${user.shipAddress}"></span></div>
+      </div>
+      <hr/>
+      <form method="post" data-th-action="@{/order}" data-th-object="${orderForm}" >
+        <div>
+          <span><input type="hidden" data-th-field="*{orderId}"/></span>
+        </div>
+        <div>
+          <span>Product: <input type="text" data-th-field="*{product}"></input></span>
+        </div>
+        <div>
+          <span>Unit Price: <input type="text" data-th-field="*{unitPrice}"></input></span>
+        </div>
+        <div>
+          <span>Discount: <input type="text" data-th-field="*{discount}"></input></span>
+        </div>
+        <div>
+          <span>Quantity: <input type="number" data-th-field="*{quantity}" min=0></input></span>
+        </div>
+        <div>
+          <input type="submit" value="Submit Order"></input>
+        </div>
+      </form>
+      <hr/>
+      <div data-th-unless="${#lists.isEmpty(orderDetails)}">
+        <form method="post" data-th-action="@{/confirm}">
+      <table border="black 1px">
+        <tr>
+          <td>
+            <span>Product</span>
+          </td>
+          <td>
+            <span>Price</span>
+          </td>
+          <td>
+            <span>Discount</span>
+          </td>
+          <td>
+            <span>Quantity</span>
+          </td>
+        </tr>
+        <tr data-th-each="orderDetail: ${orderDetails}">
+          <td>
+            <span data-th-text="${orderDetail.product}"></span>
+          </td>
+          <td>
+            <span data-th-text="${orderDetail.unitPrice}"></span>
+          </td>
+          <td>
+            <span data-th-text="${orderDetail.discount}"></span>
+          </td>
+          <td>
+            <span data-th-text="${orderDetail.quantity}"></span>
+          </td>
+        </tr>
+      </table><br/>
+      <input type="submit" value="Confirm Order"/>
+    </form>
+  </div>
+      <div data-th-if="${#lists.isEmpty(orderDetails)}">
+        No Items Yet.
+      </div>
+    </div>
+  </body>
+</html>
